@@ -18,7 +18,7 @@ def main(in_path, out_path):
     with open(in_path, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             zipcode = (row.get("Incident Zip") or "").strip()[:5]
-            if not (len(zipcode) == 5 and zipcode.isdigit()):
+            if not (len(zipcode) == 5 and zipcode.isdigit() and "10000" <= zipcode <= "11699"):
                 continue                                  # drop missing zips
             try:
                 created = datetime.strptime(row["Created Date"], DATE_FMT)
